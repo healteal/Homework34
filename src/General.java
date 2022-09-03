@@ -1,8 +1,8 @@
 public class General {
     public static void main(String[] args) {
         Port port = new Port();
-        ShipGetter shipGetter = new ShipGetter("Титаник", 3, port);
-        ShipUnload shipUnload = new ShipUnload("Ситаник", 4, port);
+        ShipGetter shipGetter = new ShipGetter("Титаник", 0, port);
+        ShipUnload shipUnload = new ShipUnload("Ситаник", 10, port);
         Thread thread1 = new Thread(shipGetter);
         thread1.setDaemon(true);
         thread1.start();
