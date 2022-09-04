@@ -2,9 +2,10 @@ public class Port {
     private int size = 0;
 
     public synchronized void getFromPort(Ship ship) {
-        if (size <= 1 || ship.getStorage() >= 250) {
+        if (size < 1 || ship.getStorage() >= 250) {
             try {
                 wait();
+                notify();
                 return;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -22,9 +23,11 @@ public class Port {
     }
 
     public synchronized void putInPort(Ship ship) {
-        if (size > 1000 || ship.getStorage() <= 1) {
+        int MAX_SIZE = 1000;
+        if (size > MAX_SIZE || ship.getStorage() < 1) {
             try {
                 wait();
+                notify();
                 return;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
